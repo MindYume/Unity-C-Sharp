@@ -87,6 +87,8 @@ MonoBehaviour:
   _Camera: {fileID: 4622474609443159497}
   _CameraOffset: 10
   _MouseSensitivity: 1000
+  _WinPopUp: {fileID: 0}
+  _userInterface: {fileID: 0}
 --- !u!135 &3081942115874427611
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -233,4 +235,4 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6079268435791044600}
-  m_Enabled: 0
+  m_Enabled: 1

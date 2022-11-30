@@ -6,12 +6,19 @@ namespace Maze
 {
     public class WinBonus : Bonus
     {
+        private EventSystem _eventSystem;
+
         public override void Awake()
         {
             base.Awake();
             
             _color = GetRandomColor();
             _renderer.material.color = _color;
+
+            if(!GameObject.FindWithTag("EventSystem").TryGetComponent<EventSystem>(out _eventSystem))
+            {
+                Debug.Log("EventSysyem object not found or has no script!");
+            }
         }
 
         public override void Update()
@@ -25,7 +32,9 @@ namespace Maze
             if(other.CompareTag("Player"))
             {
                 IsInteractable = false;
-                other.GetComponent<Player>().GetScore(1);
+                
+                _eventSystem.WinBonusPick.Invoke();
+                Debug.Log("Pick bonus");
             }
         }
 

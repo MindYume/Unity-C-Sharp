@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Maze
@@ -6,26 +7,30 @@ namespace Maze
     {
         private InputController _inputController;
         private ListExecuteObjectController _executeObject;
-        [SerializeField] private Unit _player;
+        [SerializeField] private Unit _Player;
+        [SerializeField] private Bonus[] _BonusObj;
+
+
+        IEnumerator interactiveEnum;
+
 
         private void Awake()
         {
-            _inputController = new InputController(_player);
-            _executeObject = new ListExecuteObjectController();
+            _inputController = new InputController(_Player);
+            _executeObject = new ListExecuteObjectController(_BonusObj);
             _executeObject.AddExecuteObject(_inputController);
+            interactiveEnum = _executeObject.GetEnumerator();
         }
 
 
         void Update()
         {
-            for (int i = 0; i < _executeObject.Length; i++)
+            while(_executeObject.MoveNext())
             {
-                if ( _executeObject.InteractiveObject[i] == null )
-                {
-                    continue;
-                }
-                _executeObject.InteractiveObject[i].Update();
+                IExecute temp = (IExecute)_executeObject.Current;
+                temp.Update();
             }
+            _executeObject.Reset();
         }
     }
 }
