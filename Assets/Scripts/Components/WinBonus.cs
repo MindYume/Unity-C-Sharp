@@ -34,7 +34,7 @@ namespace Maze
                 IsInteractable = false;
                 
                 _eventSystem.WinBonusPick.Invoke();
-                Debug.Log("Pick bonus");
+                // Debug.Log("Pick bonus");
             }
         }
 
