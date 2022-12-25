@@ -19,6 +19,20 @@ namespace Maze
         private int _winScore = 5;
         private int _score = 0;
 
+        public int Score
+        {
+            get 
+            {
+                return _score;
+            }
+
+            set 
+            {
+                _score = value;
+                _userInterface.SetScore(value);
+            }
+        }
+
         public override void Awake()
         {
             base.Awake();
